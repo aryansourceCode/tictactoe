@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container{
+        margin:200px;
+        margin-left:600px ;
+    }
+    .row{
+        display: flex;
+    }
+    .column{
+        height:85px;
+        width:85px;
+        border:3px solid black;
+        display: flex;
+        justify-content:center ;
+        align-items: center;
+        font-size: 30px;
+        font-weight: 10px;
+        cursor: pointer;
+    }
+</style>
+<body>
+    <center><h1 style="color: darkmagenta;">TIC-TAC-TOE</h1></center>
+    <div class="container" >
+        <div class="grid" >
+        <div class="row">
+            <div id="0" onclick="clickme(this)" class="column"></div>
+            <div id="1" onclick="clickme(this)" class="column"></div>
+            <div id="2" onclick="clickme(this)" class="column"></div>
+        </div>
+        <div class="row">
+            <div id="3" onclick="clickme(this)" class="column"></div>
+            <div id="4" onclick="clickme(this)" class="column"></div>
+            <div id="5" onclick="clickme(this)" class="column"></div>
+        </div>
+        <div class="row">
+            <div id="6" onclick="clickme(this)" class="column"></div>
+            <div id="7" onclick="clickme(this)" class="column"></div>
+            <div id="8" onclick="clickme(this)" class="column"></div>
+        </div>
+        </div>
+    </div>
+</body>
+<script>
+    let arr=Array(9).fill(null);
+    let curr="X";
+    function checkw() {
+    if ((arr[0] != null && arr[0] == arr[1] && arr[1] == arr[2]) ||
+        (arr[3] != null && arr[3] == arr[4] && arr[4] == arr[5]) ||
+        (arr[6] != null && arr[6] == arr[7] && arr[7] == arr[8]) ||
+        (arr[0] != null && arr[0] == arr[3] && arr[3] == arr[6]) ||
+        (arr[1] != null && arr[1] == arr[4] && arr[4] == arr[7]) ||
+        (arr[2] != null && arr[2] == arr[5] && arr[5] == arr[8]) ||
+        (arr[0] != null && arr[0] == arr[4] && arr[4] == arr[8]) ||
+        (arr[2] != null && arr[2] == arr[4] && arr[4] == arr[6])) {
+        document.write(`Winner is ${curr}`);
+    } else if (!arr.some((e) => e == null)) {
+        document.write(`Game is draw`);
+    }
+}
+
+    function clickme(a){
+        const id=Number(a.id);
+        if(arr[id]!=null){return}
+        arr[id]=curr;
+        a.innerText=curr;
+        checkw();
+
+        curr=curr==="X"?"O":"X";
+        console.log(arr);
+    }
+    //console.log(arr);
+</script>
+</html>
